@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="リソース名 &apos;testmanagement/view/main_admin.html&apos; を &apos;main_admin.jsp&apos; に変更します" description="リソース &apos;main_admin.html&apos; の名前変更" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="view/main_admin.html" name="main_admin.jsp" stamp="1467963123949" updateReferences="true"/>&#x0A;<refactoring comment="リソース名 &apos;testmanagement/view/test_list.html&apos; を &apos;test_list.jsp&apos; に変更します" description="リソース &apos;test_list.html&apos; の名前変更" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="view/test_list.html" name="test_list.jsp" stamp="1467964315066" updateReferences="true"/>
+</session>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<%@ page contentType="text/html; charset=utf-8" %>
+
+<%@ page import="jp.asojuku.testmanagement.dto.TestInfoDto" %>
+<%@ page import="jp.asojuku.testmanagement.dto.TestSeachResultDto" %>
+<%@ page import="java.util.List" %>
+<script type="text/javascript">
+$(function(){
+    $('a,a img,button').css({
+        opacity: 1.0,
+        filter: "alpha(opacity=100)"
+        }).hover(function(){
+            $(this).fadeTo(200,0.6);
+        },function(){
+            $(this).fadeTo(200,1.0);
+    })
+});
+</script>
+</head>
+<body>
+<% 
+TestSeachResultDto testseachresultdto = (TestSeachResultDto)request.getAttribute("testseachresult");
+List<TestInfoDto> result = testseachresultdto.getTestlist();
+int count = testseachresultdto.getSearchNum();
+String keyword = testseachresultdto.getKeyword();
+%>
+<h1><%= keyword %></h1>
+<%if (count != 0){ %>
+	<%for (TestInfoDto data:result){%>
+		<h3><%= data.getTestName() %></h3><a href="<%=request.getContextPath() %>/confirmationdeletetestinfo?date=<%= data.getTestId() %>">ｻｸｼﾞｮ</a>
+		<h3><%= data.getSponsor() %></h3>
+		<h3><%= data.getExaminationDate() %></h3>
+		
+	<%} %>
+	
+<% }else{%>
+<%} %>
+</body>
+</html>

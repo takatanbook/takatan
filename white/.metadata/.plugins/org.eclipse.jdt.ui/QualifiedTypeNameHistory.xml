@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="jp.asojuku.testmanagement.vailidator.LoginInfoVailidator"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServlet"/>
+<fullyQualifiedTypeName name="jp.asojuku.testmanagement.vailidator.UtilValidator"/>
+<fullyQualifiedTypeName name="jp.asojuku.testmanagement.bo.DeleteTestInfoBo"/>
+<fullyQualifiedTypeName name="jp.asojuku.testmanagement.bo.TestAddBo"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+</qualifiedTypeNameHistroy>

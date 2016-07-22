@@ -1,0 +1,179 @@
+/*-------------------- 共通 --------------------*/
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+body, td {
+	color: #4d4d4d;
+	font-size: 20px;
+	font-family: メイリオ;
+}
+
+/*-------------------- 見出し --------------------*/
+h1 {
+	font-size: 28px;
+}
+h1 a {
+	color: #ffffff;
+}
+h1 a:hover {
+	color: #ffffff;
+}
+h2 {
+	color: #ffffff;
+	font-size: 24px;
+	font-family: メイリオ;
+	font-weight: bold;
+	background-color: #3c91e6;
+	padding: 8px;
+	clear: left;
+}
+h3 {
+	font-size: 22px;
+	font-family: メイリオ;
+	font-weight: bold;
+	border-left: 5px solid #000000;
+	margin: 0px;
+	padding:0 0 0px 8px;
+}
+
+/*-------------------- リンク --------------------*/
+a {
+	color: #3c91e6;
+	text-decoration: none;
+}
+a:hover {
+	color: #80cab4;
+}
+a:active {
+	color: #80cab4;
+}
+
+/*-------------------- ボタン・リスト --------------------*/
+button {
+	color: #fff;
+	font-weight: bold;
+	border-style: none;
+	background-color: #29a7e0;
+	padding: 8px 20px;
+}
+button:hover {
+	color: #fff;
+	background-color: #3c91e6;
+}
+.button_test {
+	margin: 36px 10px 10px 10px;
+}
+.button_student {
+	margin: 0px 0px 0px 3px;
+}
+.drop, .drop_depart {
+	margin: 0px 0px 10px 0px;
+	padding: 5px;
+}
+.drop_depart {
+	width: 200px;
+}
+.menu {
+	width: 150px;
+	margin: 0px;
+}
+
+/*-------------------- ヘッダー --------------------*/
+header {
+	color: #ffffff;
+	background-color: #29a7e0;
+	text-align: center;
+	padding: 5px;
+}
+
+/*-------------------- ベース --------------------*/
+figure {
+	margin: 0px;
+}
+.top {
+	width: 100%;
+	height: auto !important;
+	height: 100%;
+	min-height: 100%;
+	position: relative;
+}
+.login, .error {
+	width: 400px;
+	margin: 0px auto;
+}
+.main {
+	width: 960px;
+	height: auto !important;
+	height: 100%;
+	position: relative;
+	margin: 0 auto;
+	overflow: auto;
+}
+.info {
+	background-color: #fff;
+	width: 740px;
+	height: 100%;
+	margin-bottom: 54px;
+	padding: 8px;
+	float: left;
+}
+.side {
+	background-color: #e8f2ff;
+	text-align: center;
+	width: 180px;
+	margin: 0px 4px 0px 0px;
+	padding: 10px;
+	float: right;
+}
+
+/*-------------------- テーブル --------------------*/
+.list {
+	width: 100%;
+	margin: 0px 0px 20px 0px;
+	float: left;
+}
+th {
+	background-color: #cee4ff;
+	border: 1px solid #000000;
+}
+.list, td {
+	background-color: #fff;
+	text-align: center;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	padding: 8px;
+}
+td.testadd, td.studentadd {
+	background-color: #cee4ff;
+	width: 150px;
+}
+td.testadd_main, td.studentadd_main {
+	text-align: left;
+}
+.button {
+	margin-left: auto;
+}
+td.button {
+	border: none;
+	padding: 0px;
+}
+.button_method {
+	margin: 0 auto;
+}
+td.search_sdt_result {
+	width: 150px;
+}
+
+/*-------------------- フッター --------------------*/
+footer {
+	color: #ffffff;
+	background-color: #29a7e0;
+	text-align: center;
+	width: 100%;
+	bottom: 0;
+	padding: 15px 0px 15px;
+	position: fixed;
+}

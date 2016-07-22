@@ -1,0 +1,105 @@
+package jp.asojuku.testmanagement.bo;
+
+import java.sql.SQLException;
+import java.text.ParseException;
+
+import javax.naming.NamingException;
+
+import jp.asojuku.testmanagement.entity.TestListEntity;
+import jp.asojuku.testmanagement.exception.SystemErrorExcepton;
+import jp.asojuku.testmanagement.model.Dbcontrol;
+import jp.asojuku.testmanagement.util.DateUtil;
+
+public class TestAddBo {
+	//検定テーブルに検定情報を追加するSQL
+	private static final String TEST_ADD_SQL = 	"INSERT INTO test_list (" + 	TestListEntity.TEST_NAME + "," +
+																		TestListEntity.TEST_SPONSOR + "," +
+																		TestListEntity.TEST_DAY + ") VALUES ( ?,?,? ) ";
+	private static final String TEST_ADD_SEACH_CHECK_SQL =
+			"SELECT * FROM test_list WHERE "+TestListEntity.TEST_NAME + " = ?"+
+			TestListEntity.TEST_DAY + " = ? " + TestListEntity.TEST_SPONSOR  + " = ?";
+	
+	private static final int TEST_ADD_NAME_IDX = 1;
+	private static final int TEST_ADD_SPONSOR_IDX = 2;
+	private static final int TEST_ADD_TEST_DAY_IDX = 3;
+	
+	private static final int TEST_ADD_SEACH_CHECK_TESTNAME_IDX = 1;
+	private static final int TEST_ADD_SEACH_CHECK_TESTDAY_IDX = 2;
+	private static final int TEST_ADD_SEACH_CHECK_TEST_SPONSOR_IDX = 3;
+	
+
+	public int addTest(String test_name, String test_sponsor, String day) throws  SystemErrorExcepton, ParseException{
+
+		int result;
+		//日付をSQLのDATE型に変換
+		java.sql.Date test_day = DateUtil.toDate(day);
+		//インスタンス作成
+		Dbcontrol db = new Dbcontrol();
+		try {
+
+			//データベースに接続
+			db.connect();
+			//トランザクション開始
+			db.beginTranzaction();
+			//ﾌﾟﾘﾍﾟｱﾄｰﾄﾞｽﾃｰﾄﾒﾝﾄ生成
+			db.prepareStatement(TEST_ADD_SQL);
+			//値をセット
+			db.setString(TEST_ADD_NAME_IDX, test_name);
+			db.setString(TEST_ADD_SPONSOR_IDX, test_sponsor);
+			db.setDate(TEST_ADD_TEST_DAY_IDX,test_day);
+			//sqlを実行
+			result = db.executeUpdate();
+			db.commit();
+		} catch (SQLException e){
+				System.out.println(e.getMessage());
+				//ロールバック
+				SafeRollback(db);
+				throw new SystemErrorExcepton();
+
+		} catch (NamingException e) {
+				System.out.println(e.getMessage());
+				SafeRollback(db);
+				e.printStackTrace();
+				throw new SystemErrorExcepton();
+		} finally {
+	        	//psとconをからにする
+	    		try {
+					db.close();
+				} catch (SQLException e) {
+					// TODO 自動生成された catch ブロック
+					e.printStackTrace();
+				}
+		}
+		return result;
+	}
+	/*
+	 * 既に同じ値がテストのデータがないか?
+	 * 
+	 */
+	public String testingAlreadyExists(String test_name, String test_sponsor, String day) throws ParseException{
+		String str = "";
+		java.sql.Date test_day = DateUtil.toDate(day);
+		Dbcontrol db = new Dbcontrol();
+		try{
+			db.connect();
+			db.prepareStatement(TEST_ADD_SEACH_CHECK_SQL);
+			db.setString(TEST_ADD_SEACH_CHECK_TESTNAME_IDX, test_name);
+			db.setDate(TEST_ADD_SEACH_CHECK_TESTDAY_IDX, test_day);
+			db.setString(TEST_ADD_SEACH_CHECK_TEST_SPONSOR_IDX, test_sponsor);
+			
+		}
+		return str;
+	}
+	private void SafeRollback(Dbcontrol db){
+
+		try {
+			db.rollback();
+		} catch (SQLException e) {
+			//ログの出力のみ
+			System.out.println("ロールバックに失敗しました："+e);
+		}
+
+	}
+
+
+}

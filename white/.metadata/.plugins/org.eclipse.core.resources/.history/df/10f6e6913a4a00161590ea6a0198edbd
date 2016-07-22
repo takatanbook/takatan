@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>検定管理システム</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="<%=request.getContextPath() %>/view/css/style.css" rel="stylesheet" type="text/css" />
+<script src="<%=request.getContextPath() %>/view/js/jquery-1.11.3.min.js"></script>
+$(function(){
+    $('a,a img,button').css({
+        opacity: 1.0,
+        filter: "alpha(opacity=100)"
+        }).hover(function(){
+            $(this).fadeTo(200,0.6);
+        },function(){
+            $(this).fadeTo(200,1.0);
+    })
+});
+</script>
+<%@ page contentType="text/html; charset=utf-8" %>
+	
+<%@ page import="jp.asojuku.testmanagement.dto.TestInfoDto" %>
+<%@ page import="jp.asojuku.testmanagement.dto.TestSeachResultDto" %>
+<%@ page import="java.util.List" %>
+<title></title>
+</head>
+
+<body>
+<%
+TestSeachResultDto testseachresultdto = (TestSeachResultDto)request.getAttribute("testseachresult");
+int conunt = testseachresultdto.getSearchNum();
+List<TestInfoDto> list =testseachresultdto.getTestlist();
+%>
+<% if(conunt == 0){ %>
+	
+<% }else{%>
+	<%for(TestInfoDto data: list){ %>
+		<%= data.getTestName() %>
+		<%= data.getSponsor() %>
+		<%= data.getExaminationDate() %>
+		<form method="POST" action="<%=request.getContextPath() %>/deletetestinfo">
+			<button type="submit" name='action' value="<%= data.getTestId()%>" >削除</button>
+		</form>
+	<%} %>
+<% } %>
+
+</body>
+</html>

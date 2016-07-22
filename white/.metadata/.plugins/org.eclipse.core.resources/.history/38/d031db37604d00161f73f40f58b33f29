@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0"
+  metadata-complete="true">
+
+
+   <filter>
+    <filter-name>EncodingFilter</filter-name>
+    <filter-class>jp.asojuku.testmanagement.filter.EncodingFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>EncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+ <servlet>
+	<servlet-name>TestAdd</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.AddTestAction</servlet-class>
+  </servlet>
+    <servlet>
+	<servlet-name>TestAddStart</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.AddTestStartAction</servlet-class>
+  </servlet>
+   <servlet>
+  		<servlet-name>ExamationList</servlet-name>
+  		<servlet-class>jp.asojuku.testmanagement.action.ExamationAction</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+  		<servlet-name>ExamationList</servlet-name>
+  		<url-pattern>/examationlist</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  		<servlet-name>ExamationAddSearch</servlet-name>
+  		<servlet-class>jp.asojuku.testmanagement.action.ExamationAddSearchAction</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+  		<servlet-name>ExamationAddSearch</servlet-name>
+  		<url-pattern>/examationaddsearch</url-pattern>
+  </servlet-mapping>
+
+
+    <servlet>
+  		<servlet-name>ExamationAdd</servlet-name>
+  		<servlet-class>jp.asojuku.testmanagement.action.ExamationAddAction</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+  		<servlet-name>ExamationAdd</servlet-name>
+  		<url-pattern>/examationadd</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  		<servlet-name>ExamationDelete</servlet-name>
+  		<servlet-class>jp.asojuku.testmanagement.action.ExamationDeleteAction</servlet-class>
+  </servlet>
+    <servlet>
+  		<servlet-name>TestListViewAction</servlet-name>
+  		<servlet-class>jp.asojuku.testmanagement.action.TestListViewAction</servlet-class>
+  </servlet>
+  <servlet>
+  		<servlet-name>AdminTopAction</servlet-name>
+  		<servlet-class>jp.asojuku.testmanagement.action.AdminTopAction</servlet-class>
+  </servlet>
+
+
+  <servlet-mapping>
+  		<servlet-name>AdminTopAction</servlet-name>
+  		<url-pattern>/admintop</url-pattern>
+  </servlet-mapping>
+
+
+  <servlet>
+  	<servlet-name>DeleteTestInfoAction</servlet-name>
+  	<servlet-class>jp.asojuku.testmanagement.action.DeleteTestInfoAction</servlet-class>
+  </servlet>
+  <servlet>
+	<servlet-name>ConfirmationDeleteTestInfoAction</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.ConfirmationDeleteTestInfoAction</servlet-class>
+  </servlet>
+
+	<servlet>
+	<servlet-name>HistoryofTestAction</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.HistoryofTestAction</servlet-class>
+  </servlet>
+	<servlet>
+	<servlet-name>SeachStudentTestHistoryAction</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.SeachStudentTestHistoryAction</servlet-class>
+  </servlet>
+  <servlet>
+	<servlet-name>SeachTestInfoAction</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.SeachTestInfoAction</servlet-class>
+  </servlet>
+  <servlet>
+	<servlet-name>LoginStartAction</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.LoginStartAction</servlet-class>
+  </servlet>
+  <servlet>
+	<servlet-name>LoginAction</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.LoginAction</servlet-class>
+  </servlet>
+  <servlet>
+	<servlet-name>LogoutAction</servlet-name>
+	<servlet-class>jp.asojuku.testmanagement.action.LogoutAction</servlet-class>
+  </servlet>
+  <servlet-mapping>
+ 	<servlet-name>TestListViewAction</servlet-name>
+ 	<url-pattern>/admintestview</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>DeleteTestInfoAction</servlet-name>
+ 	<url-pattern>/deletetestinfo</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ <servlet-name>ConfirmationDeleteTestInfoAction</servlet-name>
+	<url-pattern>/confirmationdeletetestinfo</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+	<servlet-name>HistoryofTestAction</servlet-name>
+	<url-pattern>/historyoftest</url-pattern>
+ </servlet-mapping>
+
+ <servlet-mapping>
+	<servlet-name>SeachStudentTestHistoryAction</servlet-name>
+	<url-pattern>/seachStudenttesthistory</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+	<servlet-name>LoginStartAction</servlet-name>
+	<url-pattern>/login</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+	<servlet-name>LoginAction</servlet-name>
+	<url-pattern>/auth</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+	<servlet-name>SeachTestInfoAction</servlet-name>
+	<url-pattern>/seachtestinfo</url-pattern>
+ </servlet-mapping>
+
+  <servlet-mapping>
+	<servlet-name>LogoutAction</servlet-name>
+	<url-pattern>/logout</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+ 	<servlet-name>TestAdd</servlet-name>
+	<url-pattern>/testadd</url-pattern>
+ </servlet-mapping>
+<servlet-mapping>
+ 	<servlet-name>TestAddStart</servlet-name>
+	<url-pattern>/testaddstart</url-pattern>
+ </servlet-mapping>
+</web-app>

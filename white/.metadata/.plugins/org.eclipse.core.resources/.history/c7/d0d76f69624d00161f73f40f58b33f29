@@ -1,0 +1,149 @@
+package jp.asojuku.testmanagement.vailidator;
+
+public class UtilValidator {
+		//ひらがなの正規表現(Unicode １６進数　ひらがなの範囲)
+		private static final String P_HIRAGANA_ONLY = "^[\\u3040-\\u309F]+$";
+		//漢字の正規表現(Unicode １６進数　漢字の範囲)
+		private static final String P_KANG_ONLY = "^[\\u4E00-\\u9FFF]+$";
+		//郵便番号の正規表現
+		private static final String P_ZIPCODE	    = "^\\d{3}(-\\d{4}|-\\d{2}|)$";
+		//電話番号の正規表現
+		private static final String P_NUMBER        = "^0\\d{1,4}-\\d{1,4}-\\d{4}$";
+		//メールアドレスの正規表現
+		private static final String P_MAILADDRES    = "^[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+(\\.[a-zA-Z0-9!#$%&'_`/=~\\*\\+\\-\\?\\^\\{\\|\\}]+)*+(.*)@[a-zA-Z0-9][a-zA-Z0-9\\-]*(\\.[a-zA-Z0-9\\-]+)+$";
+		//平仮名範囲をUnicode
+		public static final String HIRAGANA_CODES = "\\u3040-\\u309F";
+	    //カタカナの範囲をUnicode
+		public static final String KATAKANA_CODES = "\\u30A0-\\u30FF";
+		
+		//文字数を検査する（文字列、最小値、最大値）
+		public static boolean stringLengthCheck(String input, int min, int max) {
+			//フラグの設定
+			boolean msg = true;
+		    // 長さであるかを取得
+		    int length = input.length();
+		    if(length < min) { // 最小文字数よりも少なかった場合
+		    	msg = false;
+		    }
+		    if(length > max) { // 最大文字数よりも多かった場合
+		    	msg = false;
+		    }
+		    return msg; // 許容内であった場合(true)　それ以外は（false)
+		}
+		/* 
+		 * 郵便番号チェック（return true or false）
+		 * str値は、入力される値
+		 */
+		public static boolean isZipCode(String str) {
+			//あたいが正規表現の値とマッチするか
+	        return str.matches(P_ZIPCODE);
+	    }
+		
+		/*
+		 * 平仮名チェック（return true or false）
+		 * str値は、入力される値
+		 * */
+		public static boolean isHiraganaOnly(String str) {
+			//あたいが正規表現の値とマッチするか
+		    return str.matches(P_HIRAGANA_ONLY);
+		}
+		/*電話番号チェック（return true or false）
+		 * str値は、入力される値
+		 */
+		public static boolean isNumber(String str){
+			//あたいが正規表現の値とマッチするか
+			return str.matches(P_NUMBER);
+			
+		}
+		
+		/*漢字チェック（return true or false）
+		 * str値は、入力される値
+		 */
+		public static boolean isKanji(String str){
+			//あたいが正規表現の値とマッチするか
+			return str.matches(P_KANG_ONLY );
+			
+		}
+		
+		/*
+		 *メールアドレスをチェック（return true or false） 
+		 *str値は、入力される値
+		 * */
+		public static boolean isMail(String str){
+			//あたいが正規表現の値とマッチするか
+			return str.matches(P_MAILADDRES);
+		}
+		
+		/* 二つの文字列が一致チェック（return true or false）
+		 * str値は、入力される値
+		 * */
+		public static boolean matc(String str1, String str2){
+			//フラグの設定
+			boolean data = true;
+			//値が女性か男性か？
+			if(str1.equals(str2)){
+				data = false;
+			}
+			return data;
+		}
+		
+		/* 文字列が空かnullチェック（return true or false）
+		 * str値は、入力される値
+		 * */
+		public static boolean isEmpty(String value){
+			//フラグの設定
+			boolean msg = true;
+			if(value == null || value.length() == 0){
+				msg = false;
+			}
+			return msg;
+		}
+		
+		//平仮名かカタカナをチェックします。
+		public static boolean Check4(String name){
+			boolean msg = false;
+			//平仮名かカタカナを正規表現で一致するか（カタカナとひらがなの正規表現を合体）
+			if (name.matches(toMatchRegex(HIRAGANA_CODES + KATAKANA_CODES))) {
+				msg = true;
+			}
+			return msg;// 許容内であった場合(true)　それ以外は（false)
+		}
+		//平仮名とカタカナをコードを合体
+		public static String toMatchRegex(String codes) {
+			return "^[" + codes + "]+$";
+		}
+		/**
+		 * 引数で与えられた文字列に特集な文字列が入っていないか
+		 * @param str
+		 * @return msg (true or false)
+		 */
+		public boolean escapeHTML(String str){
+			// 文字列の結合を繰り返すため、StringBuffer（可変の文字列を扱う）を使用
+			//StringBuffer escapeStr = new StringBuffer();
+			boolean msg = true;
+			for(int i=0; i < str.length(); i++){
+				char c = str.charAt(i);
+
+				if(c == '<'){
+					msg = false;
+				}
+				else if(c == '>'){
+					msg = false;
+				}
+				else if(c == '&'){
+					msg = false;
+				}
+				else if(c == '"'){
+					msg = false;
+				}
+				else if(c == '\''){
+					msg = false;
+				}
+				else{
+					msg = true;
+				}
+			}
+			return msg;// 許容内であった場合(true)　それ以外は（false)
+		}
+
+}
