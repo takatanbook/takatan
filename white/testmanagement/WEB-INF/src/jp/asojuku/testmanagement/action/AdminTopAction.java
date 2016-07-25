@@ -43,7 +43,7 @@ public class AdminTopAction extends HttpServlet{
 			
 			request.setAttribute("errMsg",err );
 			//画面転送
-			RequestDispatcher rd = request.getRequestDispatcher("view/systenerror.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("view/error.jsp");
 			rd.forward(request, resp);
 	}
 	@Override

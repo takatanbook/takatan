@@ -18,6 +18,7 @@ import jp.asojuku.testmanagement.dto.SeachStudentHistoryTestResultDTO;
 import jp.asojuku.testmanagement.exception.SystemErrorExcepton;
 import jp.asojuku.testmanagement.util.CipherHelper;
 import jp.asojuku.testmanagement.vailidator.LoginInfoVailidator;
+import jp.asojuku.testmanagement.vailidator.UtilValidator;
 //学生が過去に取得したテスト情報を取得する.
 public class HistoryofTestAction extends HttpServlet{
 
@@ -32,7 +33,12 @@ public class HistoryofTestAction extends HttpServlet{
 		// TODO 自動生成されたメソッド・スタブ
 		HttpSession session = req.getSession(false);
 		String student_id = (String)req.getParameter("student_id");
-		
+		UtilValidator utilvalidator = new UtilValidator();
+		if(utilvalidator.escapeHTML(student_id) == false){
+			String err = "不正な値が入っていました。";
+			fowardErrDisp(req,resp,err);
+			return;
+		}
 		
 		 LogonInfoDTO user = (LogonInfoDTO)session.getAttribute("logininfo");
 		 int authority = 0;
@@ -86,7 +92,7 @@ public class HistoryofTestAction extends HttpServlet{
 		
 		request.setAttribute("errMsg",err );
 		//画面転送
-		RequestDispatcher rd = request.getRequestDispatcher("view/systenerror.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("view/error.jsp");
 		rd.forward(request, resp);
 	}
 	private void setSeachStudentHistoryTestResultDTOToRequest(HttpServletRequest request , SeachStudentHistoryTestResultDTO seachstudenthistorytestresultdto){

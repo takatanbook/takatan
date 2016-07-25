@@ -15,6 +15,7 @@ import jp.asojuku.testmanagement.dto.LogonInfoDTO;
 import jp.asojuku.testmanagement.dto.TestSeachResultDto;
 import jp.asojuku.testmanagement.exception.SystemErrorExcepton;
 import jp.asojuku.testmanagement.vailidator.LoginInfoVailidator;
+import jp.asojuku.testmanagement.vailidator.UtilValidator;
 
 public class SeachTestInfoAction extends HttpServlet{
 
@@ -43,6 +44,12 @@ public class SeachTestInfoAction extends HttpServlet{
 			 }
 			 TestSeachResultDto testseachresultdto;
 			 String keyword = (String)req.getParameter("keyword");
+			 UtilValidator utilcheck = new UtilValidator();
+			 if(utilcheck.escapeHTML(keyword) == false){
+				 req.setAttribute("errMsg","不正な値が入力されています。" );
+				 RequestDispatcher rd = req.getRequestDispatcher("admintestview");
+				 rd.forward(req, resp);
+			 }
 			 SeachTestKeywordBo seachbo = new SeachTestKeywordBo();
 			 testseachresultdto = seachbo.seachTestKeyword(keyword);
 			 if(testseachresultdto.getSearchNum() == 0){
@@ -72,7 +79,7 @@ public class SeachTestInfoAction extends HttpServlet{
 				
 		request.setAttribute("errMsg",err );
 		//画面転送
-		RequestDispatcher rd = request.getRequestDispatcher("view/systenerror.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("view/error.jsp");
 		rd.forward(request, resp);
 	}		
 }
